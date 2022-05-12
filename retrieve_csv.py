@@ -1,7 +1,6 @@
 #!/usr/local/bin/python3
 
 from pprint import pprint
-from tempfile import tempdir
 import urllib.request
 import zipfile
 from os import listdir
