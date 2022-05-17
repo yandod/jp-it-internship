@@ -29,13 +29,25 @@ for company in companies['data']:
     pprint(company['name'])
     sleep(1)
     response = google.cse().list(
-        q=company['name'],
+        q=company['name'] + ' インターンシップ',
         cx=CUSTOM_SEARCH_ENGINE_ID,
         lr='lang:ja',
         num=3
     ).execute()
-    url = response['items'][0]['link']
-    companies['data'][i]['url'] = url
+    if 'items' in response:
+        try:
+            companies['data'][i]['internship_1'] = response['items'][0]['link']
+        except IndexError:
+            companies['data'][i]['internship_1'] = ''
+        try:
+            companies['data'][i]['internship_2'] = response['items'][1]['link']
+        except IndexError:
+            companies['data'][i]['internship_2'] = ''
+        try:
+            companies['data'][i]['internship_3'] = response['items'][2]['link']
+        except IndexError:
+            companies['data'][i]['internship_3'] = ''
+    
     if i % 10 == 0:
         with open(json_file, 'w') as f:
             json.dump(companies, f, indent=4, ensure_ascii=False)
