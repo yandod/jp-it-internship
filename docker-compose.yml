@@ -10,4 +10,6 @@ services:
       - PYTHONIOENCODING=utf-8
       - LANG=C.UTF-8
       - PYTHONUSERBASE=/pip_modules
+      - GOOGLE_API_KEY=
+      - GOOGLE_SEARCH_ENGINE=
 
